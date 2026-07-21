@@ -1,8 +1,27 @@
-"""
-K-Means Clustering Web App
-รันด้วย: streamlit run app.py
-"""
+# ================== Auto Install Dependencies ==================
+import sys
+import subprocess
 
+def install_if_missing(package, import_name=None):
+    import_name = import_name or package
+    try:
+        __import__(import_name)
+    except ImportError:
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install", package, "-q"
+        ])
+
+# ติดตั้ง library ที่จำเป็น
+install_if_missing("joblib")
+install_if_missing("streamlit")
+install_if_missing("scikit-learn", "sklearn")
+install_if_missing("pandas")
+install_if_missing("numpy")
+install_if_missing("plotly")
+install_if_missing("matplotlib")
+install_if_missing("seaborn")
+
+# ================== Import Libraries ==================
 import streamlit as st
 import pandas as pd
 import numpy as np
